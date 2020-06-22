@@ -29,7 +29,7 @@ public class Movement2D : MonoBehaviour
     // }
     
     
-    void Update()
+    void FixedUpdate()
     {   
         if (Input.GetKey(KeyCode.W)){
             transform.Translate(Vector3.right * F_speed * Time.deltaTime);
