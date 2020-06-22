@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 1015602006}
   - component: {fileID: 1015602012}
   m_Layer: 0
-  m_Name: ExpandingSpace_Shrimpzooka_AnneBijker
+  m_Name: Shrimpzooka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -32,7 +32,6 @@ public class RayShoot : MonoBehaviour
 			timer -= Time.deltaTime;
 		}
 
-		// if(inTrigger == true)
 		if (distance <= 25f)
 		{
 			if (timer <= 0f)
@@ -83,18 +82,5 @@ public class RayShoot : MonoBehaviour
 		this.gameObject.GetComponent<AIPath>().enabled = true;
 
 		timerOn = true;
-	}
-
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		// StartCoroutine(Shoot());
-		inTrigger = true;
-		Debug.Log("enter");
-	}
-
-	void OnTriggerExit2D(Collider2D other)
-	{
-		inTrigger = false;
-		Debug.Log("leave");
 	}
 }
