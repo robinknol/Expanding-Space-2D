@@ -5,17 +5,15 @@ using UnityEngine;
 public class AnimatorController : MonoBehaviour
 {
     public Animator animator;
-
+    
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    public Animator Animator
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetBool("ats", true);
-        }
+        get{return animator;}
+        set{animator = value;}
     }
 }

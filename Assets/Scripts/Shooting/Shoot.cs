@@ -6,6 +6,7 @@ public class Shoot : MonoBehaviour
 {
     public float floatHeight; //desired float hight
 
+	AnimatorController animatorController;
 
 
     void FixedUpdate()
@@ -15,12 +16,12 @@ public class Shoot : MonoBehaviour
         Vector2 forward = transform.TransformDirection(Vector2.right) * 10;
         Debug.DrawRay(transform.position, forward, Color.green);
 
-          if (hit.collider != null)
-       {
+        if (hit.collider != null)
+        {
             Debug.Log(hit.collider.name);
             float distance = Mathf.Abs(hit.point.y - transform.position.y);
             float heightError = floatHeight - distance;
-       }
+        }
 
     }
 }

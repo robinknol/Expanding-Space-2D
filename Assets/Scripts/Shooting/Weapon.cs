@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     public Transform firePoint;
     public int damage = 1;
     public GameObject collisionEffect;
+    public Animator animator;
 
 
 
