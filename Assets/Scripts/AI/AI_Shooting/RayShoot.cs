@@ -14,6 +14,8 @@ public class RayShoot : MonoBehaviour
 	private bool inTrigger = false;
 	private bool timerOn = false;
 	public GameObject targetLocation;
+	
+
 
 	public int damage = 1;
 
@@ -23,14 +25,14 @@ public class RayShoot : MonoBehaviour
 	}
 	void Update()
 	{
-		Debug.Log("The distance is " + (rocket.transform.position - transform.position).magnitude);
+
+		// Debug.Log("The distance is " + (rocket.transform.position - transform.position).magnitude);
 		float distance = (rocket.transform.position - transform.position).magnitude;
 		// RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, (rocket.transform.position - firePoint.position));
 
 		Debug.DrawRay(start: firePoint.position, dir: (rocket.transform.position - firePoint.position), color: Color.yellow);
 		if (timerOn == false)
 		{
-			Debug.Log("The timet is on " + timer);
 			timer -= Time.deltaTime;
 		}
 
@@ -47,20 +49,18 @@ public class RayShoot : MonoBehaviour
 
 	IEnumerator Shoot ()
 	{
-		Ray2D ray = new Ray2D(firePoint.position,targetLocation.transform.position);
-		RaycastHit2D enemyPew;
+		
+		var player = GameObject.FindGameObjectWithTag("Player").transform.position;
+		// Vector2 locDirection = new Vector2(player.x - transform.position.x, player.y - transform.position.y );
+		Vector2 locDirection = new Vector2(player.x - transform.position.x, player.y - transform.position.y );
 
-		if(Physics2D.Raycast2D(ray,out enemyPew))
-		{
-
-		}
+		Debug.DrawRay(firePoint.position, locDirection * 100, Color.green );
 
 		timerOn = false;
 
-		Debug.Log("1");
 
 		GameObject clone;
-		clone = Instantiate(targetLocation, new Vector2(rocket.transform.position.x, rocket.transform.position.y), transform.rotation);
+		clone = Instantiate(targetLocation, locDirection , transform.rotation);
 
 		Debug.Log(targetLocation.transform.position);
 
@@ -73,20 +73,37 @@ public class RayShoot : MonoBehaviour
 
 		yield return new WaitForSeconds(4f);
 
-		Debug.Log("2");
 
 		lineRendererAim.enabled = false;
 
 		lineRendererShoot.SetPosition(0, firePoint.position);
-		lineRendererShoot.SetPosition(1, clone.transform.position * 2);
+		lineRendererShoot.SetPosition(1, clone.transform.position);
 
 		lineRendererShoot.enabled = true;
 
+		
+			RaycastHit2D hit = Physics2D.Raycast(firePoint.position, locDirection);
+			Debug.DrawRay(firePoint.position, locDirection * 100 , Color.red);
+
+			if(hit)
+			{
+				Debug.Log(hit.transform.name);
+				var pHP = hit.transform.GetComponent<PlayerHealth>();
+
+				if(pHP !=null)
+				{
+					pHP.TakeDamage(damage);
+					
+				}
+			}
+
+			
+
+
 		yield return new WaitForSeconds(4f);
 
-		Debug.Log("3");
 
-		Destroy(targetLocation);
+		DestroyImmediate(targetLocation);
 
 		lineRendererShoot.enabled = false;
 
