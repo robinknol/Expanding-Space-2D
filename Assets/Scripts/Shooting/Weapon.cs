@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
-    public int damage = 10;
+    public int damage = 1;
     public GameObject collisionEffect;
 
 
