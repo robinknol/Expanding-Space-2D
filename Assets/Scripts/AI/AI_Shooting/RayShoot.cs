@@ -15,6 +15,8 @@ public class RayShoot : MonoBehaviour
 	private bool timerOn = false;
 	public GameObject targetLocation;
 
+	public int damage = 1;
+
 	void Start()
 	{
 		time = timer;
@@ -23,7 +25,7 @@ public class RayShoot : MonoBehaviour
 	{
 		Debug.Log("The distance is " + (rocket.transform.position - transform.position).magnitude);
 		float distance = (rocket.transform.position - transform.position).magnitude;
-		RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, (rocket.transform.position - firePoint.position));
+		// RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, (rocket.transform.position - firePoint.position));
 
 		Debug.DrawRay(start: firePoint.position, dir: (rocket.transform.position - firePoint.position), color: Color.yellow);
 		if (timerOn == false)
@@ -44,6 +46,14 @@ public class RayShoot : MonoBehaviour
 
 	IEnumerator Shoot ()
 	{
+		// Ray2D ray = new Ray2D(firePoint.position,targetLocation.transform.position);
+		// RaycastHit2D enemyPew;
+
+		// if(Physics2D.Raycast2D(ray,out enemyPew))
+		// {
+
+		// }
+
 		timerOn = false;
 
 		Debug.Log("1");
@@ -54,7 +64,7 @@ public class RayShoot : MonoBehaviour
 		Debug.Log(targetLocation.transform.position);
 
 		lineRendererAim.SetPosition(0, firePoint.transform.position);
-		lineRendererAim.SetPosition(1, clone.transform.position * 2);
+		lineRendererAim.SetPosition(1, clone.transform.position);
 
 		lineRendererAim.enabled = true;
 
@@ -67,7 +77,7 @@ public class RayShoot : MonoBehaviour
 		lineRendererAim.enabled = false;
 
 		lineRendererShoot.SetPosition(0, firePoint.position);
-		lineRendererShoot.SetPosition(1, clone.transform.position * 2);
+		lineRendererShoot.SetPosition(1, clone.transform.position);
 
 		lineRendererShoot.enabled = true;
 
