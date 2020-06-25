@@ -11,18 +11,20 @@ public class PlayerHealth : MonoBehaviour
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
+    public GameObject ButtonBackToMenu;
 
 
     void Start()
     {
         currentHealth = maxHealth;
+        ButtonBackToMenu.SetActive(false);
     }
 
     
-    public void TakeDamage(int damage)
+    public void TakeDamage(int enemydamage)
     {
-        Debug.Log("OUCH! " + damage + " that must have hurt!");
-        currentHealth -= damage;
+        Debug.Log("OUCH! " + enemydamage + " that must have hurt!");
+        currentHealth -= enemydamage;
         
 
         if(currentHealth == 2)
@@ -39,7 +41,9 @@ public class PlayerHealth : MonoBehaviour
         {
             heart1.SetActive(false);
 
-            //death screen code~
+            Destroy(gameObject);
+            
+            ButtonBackToMenu.SetActive(true);
         }
         
     }

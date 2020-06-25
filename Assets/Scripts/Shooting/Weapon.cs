@@ -28,10 +28,11 @@ public class Weapon : MonoBehaviour
         {
             Debug.Log(hitInfo.transform.name);
 
-            Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
+            EnemyHealth enemy = hitInfo.transform.GetComponent<EnemyHealth>();
             if (enemy != null)
             {
                 Debug.Log("Damage!!!");
+                enemy.EnemyTakeDamage(damage);
             }
 
             Instantiate(collisionEffect, hitInfo.point, Quaternion.identity);

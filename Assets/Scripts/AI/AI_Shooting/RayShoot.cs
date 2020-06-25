@@ -14,10 +14,9 @@ public class RayShoot : MonoBehaviour
 	private bool inTrigger = false;
 	private bool timerOn = false;
 	public GameObject targetLocation;
-	
+	public int enemydamage = 1;
 
 
-	public int damage = 1;
 
 	void Start()
 	{
@@ -70,7 +69,7 @@ public class RayShoot : MonoBehaviour
 
 		this.gameObject.GetComponent<AIPath>().enabled = false;
 
-		yield return new WaitForSeconds(4f);
+		yield return new WaitForSeconds(3f);
 
 
 		lineRendererAim.enabled = false;
@@ -91,7 +90,7 @@ public class RayShoot : MonoBehaviour
 
 				if(pHP !=null)
 				{
-					pHP.TakeDamage(damage);
+					pHP.TakeDamage(enemydamage);
 					
 				}
 			}
@@ -102,7 +101,7 @@ public class RayShoot : MonoBehaviour
 		yield return new WaitForSeconds(4f);
 
 
-		DestroyImmediate(targetLocation);
+		// DestroyImmediate(targetLocation);
 
 		lineRendererShoot.enabled = false;
 
